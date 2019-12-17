@@ -1,0 +1,13 @@
+busyflights:
+  controller: busyflights
+  resource: flights
+crazyair:
+  controller: crazyair
+  resource: flights
+  server:
+    url: http://localhost:8080
+toughjet:
+  controller: toughjet
+  resource: flights
+  server:
+    url: http://localhost:8080

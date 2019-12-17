@@ -1,34 +1,35 @@
-package com.travix.medusa.busyflights.domain.toughjet;
+package com.travix.medusa.busyflights.domain.supplier;
+
 
 import com.travix.medusa.busyflights.domain.DomainConstants;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
-public class ToughJetRequest {
+public class SupplierRequest {
 
     @NotNull
     @Pattern(regexp = DomainConstants.IATA_CODE_EXPREG)
-    private String from;
+    private String origin;
 
     @NotNull
     @Pattern(regexp = DomainConstants.IATA_CODE_EXPREG)
-    private String to;
+    private String destination;
 
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private String outboundDate;
+    private LocalDate departureDate;
 
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private String inboundDate;
+    private LocalDate returnDate;
 
     @Min(1)
-    private int numberOfAdults;
+    @Max(4)
+    private int numberOfPassengers;
 }

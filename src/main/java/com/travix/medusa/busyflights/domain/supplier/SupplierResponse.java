@@ -1,11 +1,11 @@
-package com.travix.medusa.busyflights.domain.busyflights;
+package com.travix.medusa.busyflights.domain.supplier;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class BusyFlightsResponse {
+public class SupplierResponse {
     private String airline;
     private String supplier;
     private String fare;

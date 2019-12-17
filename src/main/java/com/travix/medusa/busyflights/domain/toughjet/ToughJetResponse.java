@@ -1,5 +1,13 @@
 package com.travix.medusa.busyflights.domain.toughjet;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+@Getter
+@Setter
 public class ToughJetResponse {
 
     private String carrier;
@@ -11,67 +19,13 @@ public class ToughJetResponse {
     private String outboundDateTime;
     private String inboundDateTime;
 
-    public String getCarrier() {
-        return carrier;
+    public String getFare() {
+        final BigDecimal basePriceDiscounted = this.getBasePriceDiscounted();
+        return basePriceDiscounted.add(basePriceDiscounted.multiply(BigDecimal.valueOf(this.getTax()))).setScale(2, RoundingMode.HALF_UP).toString();
     }
 
-    public void setCarrier(final String carrier) {
-        this.carrier = carrier;
-    }
-
-    public double getBasePrice() {
-        return basePrice;
-    }
-
-    public void setBasePrice(final double basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    public double getTax() {
-        return tax;
-    }
-
-    public void setTax(final double tax) {
-        this.tax = tax;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(final double discount) {
-        this.discount = discount;
-    }
-
-    public String getDepartureAirportName() {
-        return departureAirportName;
-    }
-
-    public void setDepartureAirportName(final String departureAirportName) {
-        this.departureAirportName = departureAirportName;
-    }
-
-    public String getArrivalAirportName() {
-        return arrivalAirportName;
-    }
-
-    public void setArrivalAirportName(final String arrivalAirportName) {
-        this.arrivalAirportName = arrivalAirportName;
-    }
-
-    public String getOutboundDateTime() {
-        return outboundDateTime;
-    }
-
-    public void setOutboundDateTime(final String outboundDateTime) {
-        this.outboundDateTime = outboundDateTime;
-    }
-
-    public String getInboundDateTime() {
-        return inboundDateTime;
-    }
-
-    public void setInboundDateTime(final String inboundDateTime) {
-        this.inboundDateTime = inboundDateTime;
+    private BigDecimal getBasePriceDiscounted () {
+        final BigDecimal basePrice = BigDecimal.valueOf(this.getBasePrice());
+        return basePrice.subtract(basePrice.multiply(BigDecimal.valueOf(this.getDiscount()).divide(BigDecimal.valueOf(100))));
     }
 }
