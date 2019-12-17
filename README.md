@@ -99,3 +99,16 @@ It is fine to change any of the supplied application code, if you choose to do s
 **Note**
 
 Please clone this project then create your own repository from it. Do not fork/branch this project when creating your solution as it will be visible to other applicants.
+
+**Notes**
+
+I have added lombok to avoid multiple getters and setters in the application and also I have changed application properties to yaml.
+The project is far from being "production ready". This is the list of features needed to become it:
+- Validate errors between layers
+- Handle errors in the rest layer
+- Error log and observability with Prometheus and Grafana (for example)
+- More code coverage throughout the application
+- Build it with Spring Reactive (Webflux)
+- Add a cache for identical requests in a short period of time
+- Dockerise the project
+- Splitting the monolith into microservices
